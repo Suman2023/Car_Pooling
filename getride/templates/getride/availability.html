@@ -1,0 +1,56 @@
+{% extends "default/layout.html" %}
+
+
+
+{% block body %}
+{% load static %}
+
+
+<h3 style="text-align: center;">Available Rides</h3>
+{% if rides %}
+    <div class="row row-cols-1 row-cols-md-6 mr-auto" style="padding-right: 0px;margin-right: 0px;">
+        {% for ride in rides %}
+            <div class="col">
+                <div class="card">
+                    <img src="{% static 'images/th.jpg' %}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ride.user_name}}</h5>
+                        <p class="card-text">Leaving at: {{ride.journey_date}}</p>
+                        <a href="#" class="btn btn-primary">Chat</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+        
+
+
+
+{% else %}
+    <h1 style="text-align: center;">No rides Available :(</h1>
+{% endif %}
+
+</br></br>
+
+<h1 style="text-align: center;">Related Rides</h1>
+<div class="row row-cols-1 row-cols-md-6 mr-auto" style="padding-right: 0px; margin-right: 0px;">
+    {% for ride in relatedRides %}
+       <div class="col">
+       <div class="card">
+           <img src="{% static 'images/th.jpg' %}" class="card-img-top" alt="...">
+           <div class="card-body">
+            <h5 class="card-title">{{ride.user_name}}</h5>
+            <p class="card-text">Leaving at: {{ride.journey_date}}</p>
+           <a href="{% url 'getride:chat' ride %}" class="btn btn-primary">Chat</a>
+           </div>
+       </div>
+       </div>
+    {% endfor %}
+</div>
+
+
+
+
+<!-- <h1>No rides Available based on your origin and destination</h1> -->
+
+{% endblock body %}

@@ -1,0 +1,16 @@
+{% extends "default/layout.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block body %}
+    <h1 style="text-align: center;">Log In</h1>
+    <div class="container">
+    <form method="post" class="well form-horizontal g-4">
+      {% csrf_token %}
+      {{form|crispy}}
+      <br>
+      <p>No account? <a href="{% url 'registration:register' %}">Register</a></p>
+      <button type="submit" class="btn btn-primary">Log In</button>
+    </form>
+  </div>
+{% endblock body %}
